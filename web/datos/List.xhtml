@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+<h:head>
+     <title>DATOS DE CLIENTES</title>
+	  
+	    <h:outputStylesheet library="css" name="jsfcrud.css"/>
+</h:head>
+   
+<h:body>
+	    <h:form styleClass="datagrid table" >
+		<h3 style="aling:center">DATOS DE USUARIOS </h3>
+		<h:panelGroup id="messagePanel" layout="block">
+		    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+		</h:panelGroup>
+		<h:outputText escape="false" value="#{bundle.ListDatosEmpty}" rendered="#{datosController.items.rowCount == 0}"/>
+		<h:panelGroup rendered="#{datosController.items.rowCount > 0}">
+		    <h:outputText value="#{datosController.pagination.pageFirstItem + 1}..#{datosController.pagination.pageLastItem + 1}/#{datosController.pagination.itemsCount}"/>&nbsp;
+		    <h:commandLink action="#{datosController.previous}" value="#{bundle.Previous} #{datosController.pagination.pageSize}" rendered="#{datosController.pagination.hasPreviousPage}"/>&nbsp;
+		    <h:commandLink action="#{datosController.next}" value="#{bundle.Next} #{datosController.pagination.pageSize}" rendered="#{datosController.pagination.hasNextPage}"/>&nbsp;
+		    <h:dataTable  value="#{datosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="Usuario"/>
+			    </f:facet>
+			    <h:outputText value="#{item.usuarioNick}"/>
+			</h:column>
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="Nombres"/>
+			    </f:facet>
+			    <h:outputText value="#{item.nombre}"/>
+			</h:column>
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="Apellidos"/>
+			    </f:facet>
+			    <h:outputText value="#{item.apellido}"/>
+			</h:column>
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="Tipo de documento"/>
+			    </f:facet>
+			    <h:outputText value="#{item.tipoDocumento}"/>
+			</h:column>
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="Numero"/>
+			    </f:facet>
+			    <h:outputText value="#{item.cedula}"/>
+			</h:column>
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="Fecha de Expedición"/>
+			    </f:facet>
+			    <h:outputText value="#{item.fechaExp}">
+				<f:convertDateTime pattern="MM/dd/yyyy" />
+			    </h:outputText>
+			</h:column>
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="Telefono"/>
+			    </f:facet>
+			    <h:outputText value="#{item.telefono}"/>
+			</h:column>
+			
+			<h:column>
+			    <f:facet name="header">
+				<h:outputText value="&nbsp;"/>
+			    </f:facet>
+			    <h:commandButton action="#{datosController.prepareView}" value="VER" styleClass="butonlista"/>
+			    <h:outputText value=" "/>
+			    <h:commandButton action="#{datosController.prepareEdit}" value="EDITAR" styleClass="butonlista"/>
+			    <h:outputText value=" "/>
+			    <h:commandButton action="#{datosController.destroy}" value="BORRAR" styleClass="butonlista" />
+			</h:column>
+		    </h:dataTable>
+		</h:panelGroup>
+		<br />
+		<h:commandButton action="#{datosController.prepareCreate}" value="Nuevos datos" styleClass="myButton" />
+		<br />
+		<br />
+		<h:button outcome="/index" value="Inicio" styleClass="myButton" />
+	    </h:form>
+       
+ </h:body>
+</html>

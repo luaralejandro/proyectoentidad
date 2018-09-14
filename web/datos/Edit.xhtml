@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+<h:head>
+    <title>Actualizar datos</title>
+	  
+	    <h:outputStylesheet library="css" name="jsfcrud.css"/>
+</h:head>
+   
+<h:body>
+    
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form  styleClass="smart-green"> 
+		<h3>Editar Datos de usuarios</h3>
+                <h:panelGrid columns="2">
+                    
+		
+                    <h:outputLabel value="Nombres" for="nombre" />
+                    <h:inputText id="nombre" value="#{datosController.selected.nombre}" title="#{bundle.CreateDatosTitle_nombre}" required="true" requiredMessage="#{bundle.CreateDatosRequiredMessage_nombre}"/>
+                    <h:outputLabel value="Apellidos" for="apellido" />
+                    <h:inputText id="apellido" value="#{datosController.selected.apellido}" title="#{bundle.CreateDatosTitle_apellido}" required="true" requiredMessage="#{bundle.CreateDatosRequiredMessage_apellido}"/>
+                    <h:outputLabel value="#Tipo de documento" for="tipoDocumento" />
+                    <h:selectOneMenu  value="#{datosController.selected.tipoDocumento}">  
+                    <f:selectItem itemValue = "cedula" itemLabel = "cedula ciudadania" /> 
+    <f:selectItem itemValue = "extranjeria" itemLabel = "Cedula extranjeria"/>
+              
+</h:selectOneMenu>	   
+		    <h:outputLabel value="Fecha de exp[MM/DD/AAAA]" for="fechaExp" />
+		      <p:calendar pattern="MM/dd/yyyy"  id="fechaExp" value="#{datosController.selected.fechaExp}" title="#{bundle.CreateDatosTitle_fechaExp}" required="true" requiredMessage="#{bundle.CreateDatosRequiredMessage_fechaExp}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </p:calendar>
+		    <h:outputLabel value="#{bundle.CreateDatosLabel_cedula}" for="cedula" />
+                    <h:inputText id="cedula" value="#{datosController.selected.cedula}" title="#{bundle.CreateDatosTitle_cedula}" required="true" requiredMessage="#{bundle.CreateDatosRequiredMessage_cedula}"/>
+                    
+                    <h:outputLabel value="Telefono" for="telefono" />
+                    <h:inputText id="telefono" value="#{datosController.selected.telefono}" title="#{bundle.CreateDatosTitle_telefono}" required="true" requiredMessage="#{bundle.CreateDatosRequiredMessage_telefono}"/>
+                    <h:outputLabel value="Usuario" for="usuarioNick" />
+                    <h:selectOneMenu id="usuarioNick" value="#{datosController.selected.usuarioNick}" title="#{bundle.CreateDatosTitle_usuarioNick}" required="true" requiredMessage="#{bundle.CreateDatosRequiredMessage_usuarioNick}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandButton action="#{datosController.update}" value="Actualizar" styleClass="myButton"/>
+                <br />
+                <br />
+                <h:button outcome="View" value="Ver" styleClass="myButton"/>
+                <br />
+                <h:commandButton action="#{datosController.prepareList}" value="Volver a lista" immediate="true" styleClass="myButton"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="Inicio" styleClass="myButton" />
+            </h:form>
+       </h:body>
+
+</html>

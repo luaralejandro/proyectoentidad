@@ -1,0 +1,20 @@
+.smart-green {
+    padding:4px;
+   cursor:pointer;
+   display:block;
+   width:350px;
+   margin: 0 auto;
+   text-align:center;
+   align:center;
+     font: 18px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    display: block;
+    margin: 0 auto;
+    color: #FFFFFF;
+    background: #53A5EE;
+}
+
+.pass{
+     width:250px;
+     heigh:350px;
+     text-align:center;
+}

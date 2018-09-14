@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+<h:head>
+     <title>Vista de datos</title>
+	  
+	    <h:outputStylesheet library="css" name="jsfcrud.css"/>
+</h:head>
+   
+<h:body>
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form styleClass="dark-matter">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Nombre de usuario"/>
+                    <h:outputText value="#{datosController.selected.usuarioNick}" title="#{bundle.ViewDatosTitle_usuarioNick}"/>
+                    <h:outputText value="Nombres:"/>
+                    <h:outputText value="#{datosController.selected.nombre}" title="#{bundle.ViewDatosTitle_nombre}"/>
+                    <h:outputText value="Apellidos:"/>
+                    <h:outputText value="#{datosController.selected.apellido}" title="#{bundle.ViewDatosTitle_apellido}"/>
+                    
+                    <h:outputText value="Tipo de documento:"/>
+                    <h:outputText value="#{datosController.selected.tipoDocumento}" title="#{bundle.ViewDatosTitle_tipoDocumento}"/>
+                    <h:outputText value="Fecha de expedición:"/>
+                    <h:outputText value="#{datosController.selected.fechaExp}" title="#{bundle.ViewDatosTitle_fechaExp}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+		    <h:outputText value="Numero:"/>
+                    <h:outputText value="#{datosController.selected.cedula}" title="#{bundle.ViewDatosTitle_cedula}"/>
+                    <h:outputText value="Telefono:"/>
+                    <h:outputText value="#{datosController.selected.telefono}" title="#{bundle.ViewDatosTitle_telefono}"/>
+                    
+                </h:panelGrid>
+                <br />
+               <h:commandButton action="#{datosController.destroyAndView}" value="Borrar" styleClass="butonlista"/>
+                <br />
+                <br />
+                <h:button outcome="Edit" value="Editar" styleClass="butonlista" />
+                <br />
+                <h:commandButton action="#{datosController.prepareCreate}" value="Crear nuevos datos" styleClass="butonlista" />
+                <br />
+             <h:commandButton action="#{datosController.prepareList}" value="Volver a la lista" styleClass="butonlista" />
+                <br />
+                <br />
+                <h:button outcome="/index" value="Inicio" styleClass="butonlista"/>
+
+            </h:form>
+</h:body>
+
+</html>
